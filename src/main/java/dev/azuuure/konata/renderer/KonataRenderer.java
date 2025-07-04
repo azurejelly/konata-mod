@@ -32,7 +32,13 @@ public class KonataRenderer {
     }
 
     public void init() {
-        HudElementRegistry.addLast(TEXTURE, this::render);
+        KonataMod.LOGGER.info("now initializing renderer");
+
+        try {
+            HudElementRegistry.addLast(TEXTURE, this::render);
+        } catch (RuntimeException ex) {
+            KonataMod.LOGGER.error("failed to initialize renderer", ex);
+        }
     }
 
     public boolean shouldRender() {

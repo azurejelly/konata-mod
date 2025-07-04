@@ -29,6 +29,8 @@ public class KonataMod implements ClientModInitializer {
 		this.random = new Random();
 		this.config = new KonataModConfig();
 		this.renderer.init();
+
+		LOGGER.info("finished initializing");
 	}
 
 	public static KonataMod getInstance() {
