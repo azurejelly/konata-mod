@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class SoundHelper {
 
-    public static SoundEvent VINE = registerSound("vine");
+    public static SoundEvent JUMPSCARE = registerSound("jumpscare");
 
     @SuppressWarnings("SameParameterValue")
     private static SoundEvent registerSound(String id) {

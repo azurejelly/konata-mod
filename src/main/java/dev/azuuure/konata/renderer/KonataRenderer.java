@@ -60,7 +60,7 @@ public class KonataRenderer {
             if (lucky) {
                 KonataMod.LOGGER.info("now showing jumpscare");
                 client.getSoundManager().play(
-                        PositionedSoundInstance.master(SoundHelper.VINE, 1f)
+                        PositionedSoundInstance.master(SoundHelper.JUMPSCARE, 1f)
                 );
             }
         }
