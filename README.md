@@ -1,9 +1,11 @@
-# Fabric Example Mod
+# Konata Mod
+Adds some Konata Izumi images or jumpscares to your Minecraft client. Requires [Mod Menu](https://modrinth.com/mod/modmenu) to work.
 
-## Setup
+## Preview
+Check the [gallery tab](https://modrinth.com/mod/konata/gallery) on Modrinth.
 
-For setup instructions please see the [fabric documentation page](https://docs.fabricmc.net/develop/getting-started/setting-up-a-development-environment) that relates to the IDE that you are using.
+## Why
+No idea. I was bored and couldn't come up with a useful mod. It's also the first one I made by myself.
 
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+## I have a suggestion or I found a bug
+In both cases, go to the [GitHub issues](https://github.com/azurejelly/konata-mod/issues) page.
