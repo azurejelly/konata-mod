@@ -1,21 +1,22 @@
 package dev.azuuure.konata.renderer;
 
 import dev.azuuure.konata.KonataMod;
+import dev.azuuure.konata.sound.SoundHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.util.Identifier;
-
-import java.util.Random;
 
 public class KonataRenderer {
 
     private static final long UNLUCKY_UPDATE_DELAY = 1000L;
+    private static final Identifier TEXTURE = Identifier.of(KonataMod.MOD_ID, "textures/konata.png");
 
+    private final MinecraftClient client;
     private final KonataMod mod;
-    private final Identifier texture;
 
     private boolean lucky;
     private long lastUpdateTime;
@@ -25,13 +26,13 @@ public class KonataRenderer {
     private int y;
 
     public KonataRenderer() {
+        this.client = MinecraftClient.getInstance();
         this.mod = KonataMod.getInstance();
-        this.texture = Identifier.of(KonataMod.MOD_ID, "textures/konata.png");
         this.lastUpdateTime = System.currentTimeMillis();
     }
 
     public void init() {
-        HudElementRegistry.addLast(texture, this::render);
+        HudElementRegistry.addLast(TEXTURE, this::render);
     }
 
     public boolean shouldRender() {
@@ -45,6 +46,12 @@ public class KonataRenderer {
 
         if (shouldUpdate()) {
             update();
+
+            if (lucky) {
+                client.getSoundManager().play(
+                        PositionedSoundInstance.master(SoundHelper.VINE, 1f)
+                );
+            }
         }
 
         if (!mod.getConfig().isRandomizedPosition() && !lucky) {
@@ -53,7 +60,7 @@ public class KonataRenderer {
 
         context.drawTexture(
                 RenderPipelines.GUI_TEXTURED,
-                texture,
+                TEXTURE,
                 x, y,
                 0, 0,
                 width, height,
@@ -75,19 +82,15 @@ public class KonataRenderer {
     }
 
     public void update() {
-        MinecraftClient client = MinecraftClient.getInstance();
-
         int maxWidth = client.getWindow().getScaledWidth();
         int maxHeight = client.getWindow().getScaledHeight();
 
         if (mod.getConfig().isRandomizedPosition()) {
-            Random random = mod.getRandom();
+            width = mod.getRandom().nextInt(maxWidth + 1);
+            height = mod.getRandom().nextInt(maxHeight + 1);
 
-            width = random.nextInt(maxWidth + 1);
-            height = random.nextInt(maxHeight + 1);
-
-            x = random.nextInt(maxWidth - width + 1);
-            y = random.nextInt(maxHeight - height + 1);
+            x = mod.getRandom().nextInt(maxWidth - width + 1);
+            y = mod.getRandom().nextInt(maxHeight - height + 1);
 
             lucky = false;
         } else {
@@ -103,7 +106,6 @@ public class KonataRenderer {
 
     public void handleWindowResize() {
         if (!mod.getConfig().isRandomizedPosition()) {
-            MinecraftClient client = MinecraftClient.getInstance();
             width = client.getWindow().getScaledWidth();
             height = client.getWindow().getScaledHeight();
         }

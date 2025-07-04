@@ -1,0 +1,13 @@
+{
+  "konata.mode.random": "Randomized",
+  "konata.mode.jumpscare": "Jumpscare",
+  "konata.settings.title": "Konata Mod Settings",
+  "konata.settings.render": "Enable Konata",
+  "konata.settings.render.tooltip": "Enables or disables the mod.",
+  "konata.settings.mode": "Mode:",
+  "konata.settings.mode.tooltip": "§lRandomized:§r will render a picture of Konata with a random size and position with the specified delay.\n\n§lJumpscare:§r will show a fullscreen Konata jumpscare with a sound effect if you get lucky.",
+  "konata.settings.chance": "Chance: 1 in %s",
+  "konata.settings.chance.tooltip": "Adjusts the chance of getting a Konata jumpscare during gameplay.",
+  "konata.settings.delay": "Delay: %s s",
+  "konata.settings.delay.tooltip": "Adjusts the delay between each randomly generated Konata.\n\nOn the §lJumpscare§r mode, it defines the amount of time Konata is shown in the screen."
+}

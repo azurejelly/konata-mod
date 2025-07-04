@@ -2,8 +2,8 @@ package dev.azuuure.konata;
 
 import dev.azuuure.konata.config.KonataModConfig;
 import dev.azuuure.konata.renderer.KonataRenderer;
+import dev.azuuure.konata.sound.SoundHelper;
 import net.fabricmc.api.ClientModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,12 +23,12 @@ public class KonataMod implements ClientModInitializer {
 	public void onInitializeClient() {
 		instance = this;
 
+		SoundHelper.init();
+
 		this.renderer = new KonataRenderer();
 		this.random = new Random();
 		this.config = new KonataModConfig();
 		this.renderer.init();
-
-		LOGGER.info("random konata drawer initialized. hope you enjoy konata");
 	}
 
 	public static KonataMod getInstance() {
@@ -46,6 +46,4 @@ public class KonataMod implements ClientModInitializer {
 	public KonataRenderer getRenderer() {
 		return renderer;
 	}
-
-
 }

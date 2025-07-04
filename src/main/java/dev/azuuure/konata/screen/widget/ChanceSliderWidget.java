@@ -1,6 +1,7 @@
 package dev.azuuure.konata.screen.widget;
 
 import dev.azuuure.konata.KonataMod;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
 
@@ -14,16 +15,17 @@ public class ChanceSliderWidget extends SliderWidget {
         super(
                 0, 0,
                 150, 20,
-                Text.literal("Chance: 1 in " + chance),
+                Text.translatable("konata.settings.chance", chance),
                 (chance - MIN_CHANCE) / (double) (MAX_CHANCE - MIN_CHANCE)
         );
 
         this.chance = chance;
+        this.setTooltip(Tooltip.of(Text.translatable("konata.settings.chance.tooltip")));
     }
 
     @Override
     protected void updateMessage() {
-        this.setMessage(Text.literal("Chance: 1 in " + chance));
+        this.setMessage(Text.translatable("konata.settings.chance", chance));
     }
 
     @Override
@@ -33,8 +35,6 @@ public class ChanceSliderWidget extends SliderWidget {
         }
 
         this.chance = MIN_CHANCE + (int) (this.value * (MAX_CHANCE - MIN_CHANCE));
-
         KonataMod.getInstance().getConfig().setChance(chance);
-        KonataMod.getInstance().getRenderer().update();
     }
 }

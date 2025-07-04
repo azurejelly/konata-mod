@@ -11,7 +11,9 @@ import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.GameOptionsScreen;
-import net.minecraft.client.gui.widget.*;
+import net.minecraft.client.gui.tooltip.Tooltip;
+import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.gui.widget.CyclingButtonWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -23,7 +25,7 @@ public class KonataScreen extends GameOptionsScreen {
     private final Screen parent;
 
     protected KonataScreen(Screen parent) {
-        super(parent, MinecraftClient.getInstance().options, Text.literal("Epic Konata Mod"));
+        super(parent, MinecraftClient.getInstance().options, Text.translatable("konata.settings.title"));
 
         this.parent = parent;
     }
@@ -41,7 +43,6 @@ public class KonataScreen extends GameOptionsScreen {
         KonataMod mod = KonataMod.getInstance();
         DelaySliderWidget delaySlider = new DelaySliderWidget(mod.getConfig().getDelay());
         ChanceSliderWidget chanceSlider = new ChanceSliderWidget(mod.getConfig().getChance());
-
         chanceSlider.active = !mod.getConfig().isRandomizedPosition();
 
         List<ClickableWidget> widgets = List.of(
@@ -49,11 +50,11 @@ public class KonataScreen extends GameOptionsScreen {
                 CyclingButtonWidget.builder(TextUtil::genericOnOff)
                         .values(true, false)
                         .initially(mod.getConfig().isEnabled())
-                        .build(
-                                Text.literal("Render Konata"),
-                                (b, v) -> {
-                                    mod.getConfig().setEnabled(v);
-                                }
+                        .tooltip((u) ->
+                                Tooltip.of(Text.translatable("konata.settings.render.tooltip"))
+                        ).build(
+                                Text.translatable("konata.settings.render"),
+                                (b, v) -> mod.getConfig().setEnabled(v)
                         ),
 
                 // Button to adjust the time in screen for each Konata
@@ -63,11 +64,13 @@ public class KonataScreen extends GameOptionsScreen {
                 CyclingButtonWidget.builder(TextUtil::modeBool)
                         .values(true, false)
                         .initially(mod.getConfig().isRandomizedPosition())
-                        .build(
-                                Text.literal("Mode"),
+                        .tooltip((unused) ->
+                                Tooltip.of(Text.translatable("konata.settings.mode.tooltip"))
+                        ).build(
+                                Text.translatable("konata.settings.mode"),
                                 (b, v) -> {
-                                    mod.getRenderer().update();
                                     mod.getConfig().setRandomizedPosition(v);
+                                    mod.getRenderer().update();
 
                                     chanceSlider.active = !v;
                                 }
