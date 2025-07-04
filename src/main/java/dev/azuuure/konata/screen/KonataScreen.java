@@ -57,11 +57,20 @@ public class KonataScreen extends GameOptionsScreen {
                                 (b, v) -> mod.getConfig().setEnabled(v)
                         ),
 
-                // Button to adjust the time in screen for each Konata
-                delaySlider,
+
+                // Disable or enable the mod during the pause menu
+                CyclingButtonWidget.builder(TextUtil::genericOnOff)
+                        .values(true, false)
+                        .initially(mod.getConfig().isDisabledWhenPaused())
+                        .tooltip((u) ->
+                                Tooltip.of(Text.translatable("konata.settings.disable-paused.tooltip"))
+                        ).build(
+                                Text.translatable("konata.settings.disable-paused"),
+                                (b, v) -> mod.getConfig().setDisabledWhenPaused(v)
+                        ),
 
                 // Button to adjust the mode of the mod
-                CyclingButtonWidget.builder(TextUtil::modeBool)
+                CyclingButtonWidget.builder(TextUtil::modeFromBool)
                         .values(true, false)
                         .initially(mod.getConfig().isRandomizedPosition())
                         .tooltip((unused) ->
@@ -75,6 +84,9 @@ public class KonataScreen extends GameOptionsScreen {
                                     chanceSlider.active = !v;
                                 }
                         ),
+
+                // Button to adjust the time in screen for each Konata
+                delaySlider,
 
                 // Slider to adjust the chance of getting a fullscreen Konata
                 chanceSlider
@@ -106,12 +118,12 @@ public class KonataScreen extends GameOptionsScreen {
 
         // dynamically update the image size so that it's not
         // too big on smaller windows
-        int size = (int) (Math.min(width, height) * 0.35f);
+        int size = (int) (Math.min(width, height) * 0.30f);
 
         context.drawTexture(
                 RenderPipelines.GUI_TEXTURED,
                 Identifier.of(KonataMod.MOD_ID, "textures/konata.png"),
-                (width - size) / 2, ((height - size) / 2) + 30,
+                (width - size) / 2, ((height - size) / 2) + 35,
                 0, 0,
                 size, size,
                 size, size

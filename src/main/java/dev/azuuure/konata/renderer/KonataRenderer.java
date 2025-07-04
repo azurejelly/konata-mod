@@ -42,6 +42,10 @@ public class KonataRenderer {
     }
 
     public boolean shouldRender() {
+        if (mod.getConfig().isDisabledWhenPaused() && client.isPaused()) {
+            return false;
+        }
+
         return mod.getConfig().isEnabled();
     }
 
@@ -54,6 +58,7 @@ public class KonataRenderer {
             update();
 
             if (lucky) {
+                KonataMod.LOGGER.info("now showing jumpscare");
                 client.getSoundManager().play(
                         PositionedSoundInstance.master(SoundHelper.VINE, 1f)
                 );

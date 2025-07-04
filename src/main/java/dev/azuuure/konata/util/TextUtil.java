@@ -10,7 +10,7 @@ public class TextUtil {
                 : Text.translatable("options.off");
     }
 
-    public static Text modeBool(boolean bool) {
+    public static Text modeFromBool(boolean bool) {
         return bool
                 ? Text.translatable("konata.mode.random")
                 : Text.translatable("konata.mode.jumpscare");
