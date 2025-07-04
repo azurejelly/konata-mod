@@ -17,8 +17,9 @@ public class KonataModConfig {
         this.file = file;
         this.properties = new Properties();
         this.enabled = true;
-        this.randomizedPosition = true;
-        this.delay = 1500;
+        this.randomizedPosition = false;
+        this.disabledWhenPaused = false;
+        this.delay = 3000;
         this.chance = 10_000;
     }
 
