@@ -3,7 +3,7 @@
 	"id": "konata",
 	"version": "${version}",
 	"name": "Konata Mod",
-	"description": "Randomly draws Konata in the screen. Very important mod. Do not remove.",
+	"description": "Adds some Konata Izumi images or jumpscares to your Minecraft client.",
 	"authors": [
 		"azurejelly"
 	],
