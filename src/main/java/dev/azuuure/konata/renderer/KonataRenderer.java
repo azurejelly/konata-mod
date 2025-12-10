@@ -42,7 +42,7 @@ public class KonataRenderer {
     }
 
     public boolean shouldRender() {
-        if (mod.getConfig().isDisabledWhenPaused() && client.isPaused()) {
+        if (mod.getConfig().isDisabledWhenPaused() && client.currentScreen != null) {
             return false;
         }
 

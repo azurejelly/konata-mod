@@ -1,4 +1,4 @@
-package dev.azuuure.konata.compat;
+package dev.azuuure.konata.compatibility;
 
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;

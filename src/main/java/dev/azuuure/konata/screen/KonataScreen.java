@@ -47,9 +47,7 @@ public class KonataScreen extends GameOptionsScreen {
 
         List<ClickableWidget> widgets = List.of(
                 // Button to toggle the mod
-                CyclingButtonWidget.builder(TextUtil::genericOnOff)
-                        .values(true, false)
-                        .initially(mod.getConfig().isEnabled())
+                CyclingButtonWidget.onOffBuilder(mod.getConfig().isEnabled())
                         .tooltip((u) ->
                                 Tooltip.of(Text.translatable("konata.settings.render.tooltip"))
                         ).build(
@@ -59,9 +57,7 @@ public class KonataScreen extends GameOptionsScreen {
 
 
                 // Disable or enable the mod during the pause menu
-                CyclingButtonWidget.builder(TextUtil::genericOnOff)
-                        .values(true, false)
-                        .initially(mod.getConfig().isDisabledWhenPaused())
+                CyclingButtonWidget.onOffBuilder(mod.getConfig().isDisabledWhenPaused())
                         .tooltip((u) ->
                                 Tooltip.of(Text.translatable("konata.settings.disable-paused.tooltip"))
                         ).build(
@@ -70,10 +66,12 @@ public class KonataScreen extends GameOptionsScreen {
                         ),
 
                 // Button to adjust the mode of the mod
-                CyclingButtonWidget.builder(TextUtil::modeFromBool)
-                        .values(true, false)
-                        .initially(mod.getConfig().isRandomizedPosition())
-                        .tooltip((unused) ->
+                CyclingButtonWidget
+                        .onOffBuilder(
+                                Text.translatable("konata.mode.random"),
+                                Text.translatable("konata.mode.jumpscare"),
+                                mod.getConfig().isRandomizedPosition()
+                        ).tooltip((unused) ->
                                 Tooltip.of(Text.translatable("konata.settings.mode.tooltip"))
                         ).build(
                                 Text.translatable("konata.settings.mode"),
