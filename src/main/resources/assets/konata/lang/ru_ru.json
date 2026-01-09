@@ -1,0 +1,15 @@
+{
+  "konata.mode.random": "Рандом",
+  "konata.mode.jumpscare": "Jumpscare",
+  "konata.settings.title": "Konata Настройки мода",
+  "konata.settings.render": "Включить Konata",
+  "konata.settings.render.tooltip": "Включает или отключает мод.",
+  "konata.settings.mode": "Режим",
+  "konata.settings.mode.tooltip": "§lРандомизер:§r отобразит изображение Конаты с произвольным размером и положением с указанной задержкой.\n\n§lJumpscare:§r покажет полноэкранный jumpscare с Конатой и звуковым эффектом, если вам повезет.",
+  "konata.settings.disable-paused": "Отключить при паузе",
+  "konata.settings.disable-paused.tooltip": "Отключать ли мод, если игра приостановлена.",
+  "konata.settings.chance": "Вероятность: 1 к %s",
+  "konata.settings.chance.tooltip": "Регулирует вероятность появления Konata jumpscare во время игры.",
+  "konata.settings.delay": "Задержка: %s s",
+  "konata.settings.delay.tooltip": "Регулирует задержку между каждым случайно сгенерированным Konata.\n\nВ режиме §lJumpscare§r определяется время, в течение которого Коната отображается на экране."
+}
